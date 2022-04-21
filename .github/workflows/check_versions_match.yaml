@@ -19,9 +19,12 @@ jobs:
 
       - name: Install dependencies
         run: |
-          install.packages("testthat")
+          install.packages(c("lintr", "testthat"))
         shell: Rscript {0}
 
       - name: Run the script :-)
         run: Rscript r_script.R
+
+      - name: Check for style
+        run: Rscript -e 'lintr::lint("r_script.R")'
 
